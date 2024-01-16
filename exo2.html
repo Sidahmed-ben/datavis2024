@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Requête pour récupérer la population dans les pays d'europe :</h3>
+    <pre>
+      SELECT DISTINCT ?city ?cityLabel ?population ?country ?countryLabel ?coordinates
+      WHERE
+      {
+        ?city wdt:P31/wdt:P279* wd:Q515;  # find instances of subclasses of city
+              wdt:P1082 ?population;      # with a population
+              wdt:P17 ?country;           # in a country
+              wdt:P625 ?coordinates.      # with coordinates
+        ?country wdt:P30 wd:Q46.          # the country is in Europe
+        SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+      }
+      ORDER BY DESC(?population)
+      LIMIT 500      
+      </pre>
+    </br>
+    </br>
+    <h4> Visualisation  : </h4>
+
+    <h4>1- Carte : </h4>
+
+    <iframe
+      style="width: 70vw; height: 50vh; border: none"
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTD7rsZQiyTsyQapOsDLvn6Bnu0N10ouRNP5xRww6xC-gmavwF4fAnTKBHc45nXx0T44Xgje8ggYSK4/pubchart?oid=1110511210&format=interactive"
+      referrerpolicy="origin"
+      sandbox="allow-scripts allow-same-origin allow-popups"
+    ></iframe>
+
+</br></br></br></br>
+    
+<h4>2- Camembert  : </h4>
+<iframe width="521" height="322" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTD7rsZQiyTsyQapOsDLvn6Bnu0N10ouRNP5xRww6xC-gmavwF4fAnTKBHc45nXx0T44Xgje8ggYSK4/pubchart?oid=503231904&amp;format=interactive"></iframe>
+<h4> Voyant tools  : </h4>
+<h5> Texte analysé : </h5>
+<pre>
+    Le football transcende non seulement les barrières géographiques, mais il incarne
+  également des valeurs telles que la camaraderie, la persévérance et la fair-play.
+  Sur le terrain, les joueurs forment un ballet synchronisé, utilisant non seulement
+  leur habileté individuelle, mais également leur capacité à travailler en équipe. Les
+  histoires épiques se déroulent à chaque coup de sifflet, que ce soit dans des tournois
+  prestigieux comme la Coupe du Monde ou dans des ligues locales où des communautés
+  entières se rassemblent pour célébrer le sport. Les légendes du football émergent,
+  capturant l'imagination de générations entières et laissant un héritage durable. Les
+  exploits athlétiques et les moments de grâce sur le terrain deviennent des souvenirs
+  indélébiles dans l'esprit des amateurs de football, créant un lien émotionnel profond
+  entre les joueurs, les équipes et leurs supporters. Ainsi, le football va au-delà
+  d'un simple jeu ; il devient une source d'inspiration, de joie et d'unité à l'échelle
+  mondiale.
+</pre>
+
+<iframe style='width: 637px; height: 486px;' src='https://voyant-tools.org/tool/Cirrus/?corpus=7d14d21355b2648641c07810ffef0801'></iframe>
+  </body>
+</html>
